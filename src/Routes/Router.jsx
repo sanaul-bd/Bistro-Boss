@@ -12,6 +12,8 @@ import Secret from "../Pages/Shared/Secret/Secret";
 import DashBord from "../Layout/Main/DashBord";
 import MyCart from "../Pages/Dashbord/Mycart/MyCart";
 import AllUsers from "../Pages/Dashbord/AllUsers/allUsers";
+import AddItem from "../Pages/Dashbord/AddItem/Additem";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
     // main path || client Customar components Heare
@@ -58,6 +60,10 @@ export const router = createBrowserRouter([
                 path: 'allusers',
                 element: <AllUsers></AllUsers>
             },
+            {
+                path: 'addItem',
+                element: <AdminRoute><AddItem></AddItem></AdminRoute>
+            }
         ]
     }
 ]);

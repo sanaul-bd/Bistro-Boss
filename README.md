@@ -517,72 +517,37 @@ Name: bistro-boss-restaurant-dbe5f;
 
 # 78-11 (Super Advanced) Make User Api Secure And Verify Admin
 1. 
-2. 
+
+
+
+# https://web.programming-hero.com/update-1/video/update-1-79-2-make-admin-only-link-secure-using-adminroute
+1. Security step: 
+    a. do not show the link to them who shouldn't see them. 
+    b. only show that person /type of user who should see it. 
+    c. if someone type url don't show the page. 
+
+2. we have a AdminRoute as PrivetRoute. here in AdminRoute check user Admin or not. if user role === admin then user can access the "AddItem" route. ELSE we can through user to Home Page. 
 3. 
+
+
+# https://web.programming-hero.com/update-1/video/update-1-79-3-create-add-item-form-using-react-hook-form
+1. we use REACT-HOOKS-FORM for getting data easily. we just skip form structure for better perfomance. 
+2. we impliment all kind of input feild then we registerd all feild name for getting data. 
+3. next()
 4. 
-5. 
-7. 
-8. 
-9. 
-10. 
 
+# 79-4: design and get data. 
 
-# 
+# https://web.programming-hero.com/update-1/video/update-1-79-5-upload-image-to-image-hosting-server-imgbb-and-get-image-url
 1. 
-2. 
-3. 
-4. 
-5. 
-7. 
-8. 
-9. 
-10. 
 
-# 
-1. 
-2. 
-3. 
-4. 
-5. 
-7. 
-8. 
-9. 
-10. 
 
-# 
-1. 
-2. 
+# Upload a file or Photo by using imageBB Api. 
+1. we make a new fromData then append it as "image", data.image[0].
+2. then we make fatch and collect data by return fetch. there have so meny link like disp;ay image, delete image, experis time etc. next
 3. 
-4. 
-5. 
-7. 
-8. 
-9. 
-10. 
 
-# 
-1. 
-2. 
-3. 
-4. 
-5. 
-7. 
-8. 
-9. 
-10. 
-
-# 
-1. 
-2. 
-3. 
-4. 
-5. 
-7. 
-8. 
-9. 
-10. 
-
-# 
+# https://web.programming-hero.com/update-1/video/update-1-79-6-get-image-url-and-create-save-new-item-api
 1. 
 2. 
 3. 
