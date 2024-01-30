@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
 /*
 ^ Document for Creat a custom Hooks and Uses. 
@@ -28,7 +28,7 @@ const useMenu = () => {
     // return [menu, loading]
 
     // ! type 2 use tanstuck || query fn -- it's so easy
-    const {data: menu = [], isLoading: loading} = useQuery({
+    const {data: menu = [], isLoading: loading, refetch} = useQuery({
         queryKey: ['menu'],
         queryFn: async() => {
             const res = await fetch('http://localhost:5000/menu');
@@ -36,7 +36,7 @@ const useMenu = () => {
         }
     })
 
-    return [menu, loading]
+    return [menu, loading, refetch]
 }
 
 export default useMenu;

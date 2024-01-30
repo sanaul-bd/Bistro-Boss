@@ -4,7 +4,7 @@ import useAxiosSecure from "./useAxiosSecure";
 
 const useAdmin = () => {
     const { user } = useAuth();
-    console.log("user Name... ", user.displayName, "& Email... ", user.email);
+    // console.log("user Name... ", user.displayName, "& Email... ", user.email);
     const [axiosSecure] = useAxiosSecure();
 
     // axios fetch: 

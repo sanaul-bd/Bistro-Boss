@@ -557,19 +557,12 @@ Name: bistro-boss-restaurant-dbe5f;
 2. 
 
 # https://web.programming-hero.com/update-1/video/update-1-79-8-create-manage-items-admin-route-and-load-all-menu-items
-1. 
-2. 
-3. 
-4. 
-5. 
-7. 
-8. 
-9. 
-10. 
+1. Create Update items component and make update or delete item from heare . 
+2.  
 
-# 
-1. 
-2. 
+# https://web.programming-hero.com/update-1/video/update-1-79-9-delete-menu-item-with-verifyadmin-middleware
+1. menu.map((item, index) =><component></component>); index use for showing serial number . 
+2. আমরা ডিলেট বা যে কোন রিকোয়েষ্ট করবো ফ্রন্ট থেকে সেটা ব্যাকেন্ডে রিসিভ করে ডাটাবেজে দিতে হবে। আবার ডাটাবেজ থেকে আসলে সেটা ফ্রন্টেন্ডে পাঠালে ফেচ করে রিসিভ করে প্রিন্ট করতে হবে। এই হলো কনসেপ্ট। 
 3. 
 4. 
 5. 
@@ -1245,8 +1238,31 @@ Name: bistro-boss-restaurant-dbe5f;
     * This viedo about JWT creat, verify, send error or after verify send res.data.
 7. # 78-9 (Optional)(Advanced) Axios Interceptor Using Chat Gpt (78.7, 8, 9 (vvvi...))
     * https://web.programming-hero.com/update-1/video/update-1-78-9-optional-advanced-axios-interceptor-using-chat-gpt
-8. 
-9. 
+8. # Delete || Update items by veridy admin or not , middleware 
+    * https://web.programming-hero.com/update-1/video/update-1-79-9-delete-menu-item-with-verifyadmin-middleware
+9. # Upload image to imageBB server then fetch and print to the client 
+    * https://web.programming-hero.com/update-1/video/update-1-79-9-delete-menu-item-with-verifyadmin-middleware
+
+10. 
+
+11. 
+
+12. 
+
+13. 
+
+14. 
+
+15. 
+
+16. 
+
+17. 
+
+18. 
+
+19. 
+
 /////////////////////////////////////////////////////////////////////
 
 

@@ -15,7 +15,7 @@ const DashBord = () => {
     // TODO: load data from server then make who admin or not then send synamic menu 
     // const isAdmin = true;
     // const isAdmin = false;
-    
+
     const [isAdmin] = useAdmin()
     // console.log("Admin or not ======= > ", isAdmin);
 
@@ -28,12 +28,11 @@ const DashBord = () => {
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col items-center justify-center">
                 {/* Page content here */}
-
-
+                    <label htmlFor="my-drawer-2" className="mt-3 btn btn-primary alig drawer-button lg:hidden">Open drawer</label>
                 <Outlet></Outlet>
 
 
-                <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
+
 
             </div>
             <div className="drawer-side">
