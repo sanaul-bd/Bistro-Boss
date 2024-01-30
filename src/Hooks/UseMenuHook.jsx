@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 
 /*
@@ -10,19 +11,31 @@ import { useEffect, useState } from "react";
 */ 
 
 const useMenu = () => {
-    const [menu, setMenu] = useState([])
-    const [loading, setLoading] = useState(true)
-    useEffect(() => {
-        // fetch('menu.json')
-        fetch('http://localhost:5000/menu')
-            .then(res => res.json())
-            .then(data => {
-                console.log("Loogeeed from useMenu __Hook", data);
-                // const populerItems = data.filter(item => item.category === "popular")
-                setMenu(data)
-                setLoading(false)
-            })
-    }, [])
+    // ! type one using useState manual way
+    // const [menu, setMenu] = useState([])
+    // const [loading, setLoading] = useState(true)
+    // useEffect(() => {
+    //     // fetch('menu.json')
+    //     fetch('http://localhost:5000/menu')
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             console.log("Loogeeed from useMenu __Hook", data);
+    //             // const populerItems = data.filter(item => item.category === "popular")
+    //             setMenu(data)
+    //             setLoading(false)
+    //         })
+    // }, [])
+    // return [menu, loading]
+
+    // ! type 2 use tanstuck || query fn -- it's so easy
+    const {data: menu = [], isLoading: loading} = useQuery({
+        queryKey: ['menu'],
+        queryFn: async() => {
+            const res = await fetch('http://localhost:5000/menu');
+            return res.json()
+        }
+    })
+
     return [menu, loading]
 }
 
