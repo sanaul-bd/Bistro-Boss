@@ -13,21 +13,21 @@ import { Helmet } from 'react-helmet';
 
 const Order = () => {
     // make category index for getting that tab which is client clicked 
-    const categories = ["Pizza", "Salad", "Soup", "Dessert", "Offer"];
+    const categories = ["Pizza", "Salad", "Soup", "Dessert", "offered"];
     const { category } = useParams()
     const initialIndex = categories.indexOf(category)
 
-    console.log("Category list >> ", category);
+    console.log("Category list >> ", category, categories);
 
     const [tabindex, setTabIndex] = useState(initialIndex)
 
     // get data by calling custom hooks & filter all menu data for print . 
     const [menu] = useMenu()
-    const desserts = menu.filter(item => item.category === "dessert")
-    const soup = menu.filter(item => item.category === "soup")
-    const salad = menu.filter(item => item.category === "salad")
     const pizza = menu.filter(item => item.category === "pizza")
-    const offered = menu.filter(item => item.category === "offered")
+    const salad = menu.filter(item => item.category === "salad")
+    const soup = menu.filter(item => item.category === "soup")
+    const desserts = menu.filter(item => item.category === "dessert")
+    const offered = menu.filter(item => item.category === "offered" || item.category === "offer")
 
 
 
@@ -37,7 +37,8 @@ const Order = () => {
                 <title>Bistro Boss || Order Food</title>
             </Helmet>
             <Cover img={orderCover} title="Order Form Heare "></Cover>
-            <Tabs className='text-center my-4' defaultIndex={tabindex}
+            <Tabs className='text-center my-4'
+                defaultIndex={tabindex}
                 onSelect={(index) => setTabIndex(index)}
             >
 
@@ -46,7 +47,7 @@ const Order = () => {
                     <Tab>Salad</Tab>
                     <Tab>Soup</Tab>
                     <Tab>Dessert</Tab>
-                    <Tab>Offer</Tab>
+                    <Tab>offered</Tab>
                 </TabList>
 
                 {/* Pizza */}
@@ -69,7 +70,7 @@ const Order = () => {
                     <OrderTab items={desserts}></OrderTab>
                 </TabPanel>
 
-                {/* Drinks */}
+                {/* offer */}
                 <TabPanel>
                     <OrderTab items={offered}></OrderTab>
                 </TabPanel>

@@ -45,7 +45,7 @@ const DashBord = () => {
                             <div>
                                 <li><NavLink to='/dashbord/adminHome'><FaHome /> ADMIN HOME  (__Admin__)</NavLink></li>
                                 <li><NavLink to='/dashbord/addItem'><FaUtensils></FaUtensils> ADD AN ITEMS</NavLink></li>
-                                <li><NavLink to='/dashbord/managedItems'> <FaWallet></FaWallet> MANAGED ITEMS</NavLink></li>
+                                <li><NavLink to='/dashbord/manageItems'> <FaWallet></FaWallet> MANAGED ITEMS</NavLink></li>
                                 <li><NavLink to='/dashbord/managedBooking'><FaBook></FaBook> MANAGED BOOKINGS</NavLink></li>
                                 <li><NavLink to='/dashbord/allUsers'><FaUsers></FaUsers> ALL USERS </NavLink></li>
                                 {/* <li>

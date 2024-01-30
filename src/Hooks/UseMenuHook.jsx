@@ -17,7 +17,7 @@ const useMenu = () => {
         fetch('http://localhost:5000/menu')
             .then(res => res.json())
             .then(data => {
-                // console.log(data);
+                console.log("Loogeeed from useMenu __Hook", data);
                 // const populerItems = data.filter(item => item.category === "popular")
                 setMenu(data)
                 setLoading(false)

@@ -7,7 +7,7 @@ import useMenu from "../../../Hooks/UseMenuHook";
 const PopulerMenu = () => {
 
     // ^ usege Custom Hooks for loading data. 
-    const [menu] = useMenu()
+    const menu = useMenu()
     const popular = menu.filter(item => item.category === "popular")
 
     // ^ usege UseEffect for loading data. 

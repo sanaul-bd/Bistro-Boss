@@ -1,5 +1,7 @@
 import SectionTitle from "../../../Components/Section_Title/SectionTitle";
 import { useForm } from "react-hook-form"
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const image_hosting_token = import.meta.env.VITE_IMAGE_UPLOAD_TOKEN;
 
@@ -9,9 +11,10 @@ const AddItem = () => {
     // * এখানে রিয়েক্ট hook from use করা হয়েছে। আমরা তা ইমপোর্টের মাধ্যমে ব্যাবহার করবো ও স্টেট এ স্টোর করবো। আবার তা ছোট ফাংশানের মাধ্যমে ও ডাটা গুলো পেয়ে যাবো। ডাটা ও এরোর প্রিন্ট করবো। 
 
     // collect data by using react hook form it's so easy and usefull. 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const [axiosSecure] = useAxiosSecure();
+    const { register, handleSubmit, reset } = useForm();
     const image_hosting_url = `https://api.imgbb.com/1/upload?key=${image_hosting_token}`
-    
+
     const onSubmit = data => {
         const formData = new FormData();
         formData.append("image", data.image[0]);
@@ -20,21 +23,36 @@ const AddItem = () => {
             method: "POST",
             body: formData
         })
-        .then(res => res.json())
-        .then(imageResponse => {
-            if(imageResponse.success){
-                const imageURL = imageResponse.data.display_url;
-                console.log(imageURL);
-                const {name, category, price, recipe} = data;
-                const newItem = {name, category, price: parseFloat(price), recipe, image:imageURL}
-                console.log(newItem);
-            }
-            console.log(imageResponse);
-        })
+            .then(res => res.json())
+            .then(imageResponse => {
+                if (imageResponse.success) {
+                    const imageURL = imageResponse.data.display_url;
+                    console.log(imageURL);
+                    const { name, category, price, recipe } = data;
+                    const newItem = { name, category, price: parseFloat(price), recipe, image: imageURL }
+                    // console.log(newItem);
+
+                    axiosSecure.post('/menu', newItem)
+                        .then(data => {
+                            console.log('After Posting newMenu item by axios ', data.data);
+                            if (data.data.acknowledged) {
+                                Swal.fire({
+                                    position: "top",
+                                    icon: "success",
+                                    title: "Item has been added. ",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                reset()
+                            }
+                        })
+
+                }
+                console.log(imageResponse);
+            })
         // console.log(formData);
         // console.log(data)
     };
-    console.log(errors);
     console.log(image_hosting_token);
 
 
@@ -70,6 +88,7 @@ const AddItem = () => {
                                 <option>Salad</option>
                                 <option>Dessert</option>
                                 <option>Drinks</option>
+                                <option>offered</option>
                             </select>
                         </label>
                     </div>
