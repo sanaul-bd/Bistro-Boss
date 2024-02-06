@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet";
 import useCart from "../../../Hooks/useCart";
 import { FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 
 
@@ -53,7 +54,7 @@ const MyCart = () => {
             <div className="uppercase font-semibold flex justify-between px-4 py-4 text-white bg-slate-500 items-center">
                 <h2>Total Product : {cart.length}</h2>
                 <h2>Total Price : $ {total}</h2>
-                <button className="btn btn-warning btn-sm text-white">Pay</button>
+                <Link to='/dashbord/payment' className="btn btn-warning btn-sm text-white" disabled={!cart.length}>Pay</Link>
             </div>
             {/* second section || Table section */}
             <div className="overflow-x-auto bg-slate-200 py-4 px-3">

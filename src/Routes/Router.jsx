@@ -15,6 +15,7 @@ import AllUsers from "../Pages/Dashbord/AllUsers/allUsers";
 import AddItem from "../Pages/Dashbord/AddItem/Additem";
 import AdminRoute from "./AdminRoute";
 import ManageItems from "../Layout/Main/ManageItems/ManageItems";
+import Payment from "../Pages/Dashbord/AddItem/Payment/Payment";
 
 export const router = createBrowserRouter([
     // main path || client Customar components Heare
@@ -58,8 +59,13 @@ export const router = createBrowserRouter([
                 element: <MyCart></MyCart>
             },
             {
+                path: "payment",
+                element: <Payment></Payment>
+            },
+            // Admin Routes
+            {
                 path: 'allusers',
-                element: <AllUsers></AllUsers>
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
             {
                 path: 'addItem',
@@ -68,7 +74,8 @@ export const router = createBrowserRouter([
             {
                 path: 'manageItems',
                 element: <AdminRoute><ManageItems></ManageItems></AdminRoute>
-            }
+            },
+            
         ]
     }
 ]);

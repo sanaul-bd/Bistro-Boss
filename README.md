@@ -47,6 +47,9 @@ https://www.mongodb.com/docs/drivers/node/current/usage-examples/
 # React Simple Captha 
 * npm install react-simple-captcha
 
+# react stripe for national || international online payment - follow react_stripe | there git 
+* npm install --save @stripe/react-stripe-js @stripe/stripe-js
+
 # React hook form : used for collect data from any kind of form feild in a easy way. 
 * npm install react-hook-form
 *     const {
@@ -563,103 +566,63 @@ Name: bistro-boss-restaurant-dbe5f;
 # https://web.programming-hero.com/update-1/video/update-1-79-9-delete-menu-item-with-verifyadmin-middleware
 1. menu.map((item, index) =><component></component>); index use for showing serial number . 
 2. আমরা ডিলেট বা যে কোন রিকোয়েষ্ট করবো ফ্রন্ট থেকে সেটা ব্যাকেন্ডে রিসিভ করে ডাটাবেজে দিতে হবে। আবার ডাটাবেজ থেকে আসলে সেটা ফ্রন্টেন্ডে পাঠালে ফেচ করে রিসিভ করে প্রিন্ট করতে হবে। এই হলো কনসেপ্ট। 
-3. 
-4. 
-5. 
+3. we first import axiosSecure method on requere component. 
+4. then we axiosSecure.request[post, put, delet, patch] and get back .then(res.data)
+5. axiosSecure secure is secure for axios interceptor. its amazinng. 
 7. 
-8. 
-9. 
-10. 
 
-# 
-1. 
-2. 
-3. 
-4. 
-5. 
-7. 
-8. 
-9. 
-10. 
+# Stripe start: 
+<!-- todo: BATCH - 8 here: continue  -->
 
-# 
-1. 
-2. 
-3. 
-4. 
-5. 
-7. 
-8. 
-9. 
-10. 
+# 70-3 Create Stripe Account And Use Publishable Key: 70-2 Install Stripe, Stripe For React And Create Card Element
+step: 1 - payment.jsx
+1. goto react-stripe.js and isnatall stripe on client_side. 
+2. make a <Payment> component page and require all kind of think: 
+    a. const stripePromise = loadStripe(pk)
+    b. get Elemetn from stripe and  send stripePromise as props. and wrapped <CheckOut> component by <Element> component.  
 
-# 
-1. 
-2. 
-3. 
-4. 
-5. 
-7. 
-8. 
-9. 
-10. 
+step: 2 - checkout.jsx
+3. make a <CheckOut> then creat a function on <form onsubmit={handleSubmit}> then copy <CardElement> from stripe.js and 
+4. requere Hooks from react-stripe.js
+    a. const stripe = useStripe();
+    b. const elements = useElements();
 
-# 
-1. 
-2. 
-3. 
-4. 
-5. 
-7. 
-8. 
-9. 
-10. 
+# 70-3 Create Stripe Account And Use Publishable Key: 70-3 Create Stripe Account And Use Publishable Key
+step: 3 - checkout.jsx
+5. goto stripe and creat a account for getting "pk" and pest it .env file with a name. then import it to stripePromise = loadStripe('pk')
+6. // Use your card Element with other Stripe.js APIs
+    const {error, paymentMethod} = await stripe.createPaymentMethod({
+        type: 'card',
+        card,
+    });
+7.  use it for getting error for solving. 
+    if (error) {
+            console.log('[error]', error);
+        } else {
+            console.log('[PaymentMethod]', paymentMethod);
+        }
+8. get some test card for testing stripe: search "stripetestcard"
+    [4242424242424242, 4000056655665556, 5555555555554444, 2223003122003222, 5200828282828210];
 
-# 
-1. 
-2. 
-3. 
-4. 
-5. 
-7. 
-8. 
-9. 
-10. 
 
-# 
-1. 
-2. 
-3. 
-4. 
-5. 
-7. 
-8. 
-9. 
-10. 
+# 70-4 Display Card Error And Create Server Side Payment Intents : https://web.programming-hero.com/update-1/video/update-1-70-4-display-card-error-and-create-server-side-payment-intents
+step: 4 - checkout.jsx
+9. goto stripe doc/quick start : install stripe on servr: npm i --save stripe; - server.js - 1
+10. creat a peyment intent: by creating post method . 
+    পেমেন্ট ইন্টেন্ট হচ্ছে অনেক গুলো কাজের ধাপ। এর মাধ্যমে ইউজার ভ্যালিড কিনা, টাকা আছে কিনা যাবতীয় তথ্য যাচাইয়ের মাধ্যমে স্ট্রাইপ ইউজার কে একটা সিকরেট কোড দিয়ে থাকে অথেন্টিকেশনের পর। 
+11. app.post("/create-payment-intent") - Creat a api for Payment-intent - server. 
+12. আমরা একটি এপিআই বানালাম যেটা দিয়ে আমরা ইউজার কে চ্যালেঞ্জ করে তার বৈধতা দেখে নিবো। তারপর আমরা বডি থেকে প্রাইস / ইনফো নিবো, এমাউন্ট কে পারসফ্লোট করে দিবো যাতে পয়সা হিসেব করা যায়। পেমেন্ট ইন্টেন্ট কল করবো , তাতে অব্জেক্ট দিবো, পেমেন্ট মেথড দিবো আর রেসপন্স দিবো পেমেন্ট ইন্টেন্ট থেকে আসা ক্লাইন্ট সিক্রেট কোড কে। - server - 1.
+* call that api from clinetSide
 
-# 
-1. 
-2. 
-3. 
-4. 
-5. 
-7. 
-8. 
-9. 
-10. 
+# 70-5 Send Price And Get Client Secret From Stripe : https://web.programming-hero.com/update-1/video/update-1-70-5-send-price-and-get-client-secret-from-stripe 
+Step: 5 - 
+13. useAxiosSecure inside of useEffect for getting user data user exist or not. 
+14. এখানে একটা সমস্যার জন্য আমি ১ দিন কাজ আগাতে পারিনি তা হলে .env টা প্রথমেই রিকোয়ার করে নিতে হবে নয়ত সেখান থেকে কিছু আগে এক্সেস করতে চাইলে তা এক্সেস করা যাবে না।
+15. we use axiosSecure inside useEffect. then we pass a price object and get response.data.clientsecret.
+16. then we console it and set it on state for store secret data. 
+17. আমরা এখান থেকে প্রাইস দিয়ে একটা রিকোয়েষ্ট করলাম, ব্যাকেন্ড থেকে এইটা রিসিভ করে stripe এটাকে অথেণ্টিকেশন করে একটা কোড জেনারেট করে দিলো যা নিশ্চিত করে ইউজার টা ভ্যারিফাইড। আর পেমেন্ট করার জন্য প্রাথমিক কাজ টা সম্পন্ন হলো। payment-intent means পেমেন্ট করার জন্য উদ্যত হওয়া । 
 
-# 
-1. 
-2. 
-3. 
-4. 
-5. 
-7. 
-8. 
-9. 
-10. 
-
-# 
+# 70-6 Use Confirm Card Payment To Process Payment : https://web.programming-hero.com/update-1/video/update-1-70-6-use-confirm-card-payment-to-process-payment
 1. 
 2. 
 3. 
@@ -1243,8 +1206,90 @@ Name: bistro-boss-restaurant-dbe5f;
 9. # Upload image to imageBB server then fetch and print to the client 
     * https://web.programming-hero.com/update-1/video/update-1-79-9-delete-menu-item-with-verifyadmin-middleware
 
-10. 
+10. # Stripe Intrigate.
+    # install & Creat Component and hooks from git: 
+    * https://web.programming-hero.com/update-1/video/update-1-80-2-install-stripe-stripe-for-react-and-create-card-element
 
+<!-- todo: BATCH - 8 -->
+11. # 70-2 Install Stripe, Stripe For React And Create Card Element
+    * https://web.programming-hero.com/update-1/video/update-1-70-2-install-stripe-stripe-for-react-and-create-card-element
+
+12. # 70-3 Create Stripe Account And Use Publishable Key
+    * https://web.programming-hero.com/update-1/video/update-1-70-3-create-stripe-account-and-use-publishable-key
+
+13. # 70-4 Display Card Error And Create Server Side Payment Intents
+    * https://web.programming-hero.com/update-1/video/update-1-70-4-display-card-error-and-create-server-side-payment-intents
+
+   14. # 
+    * 
+
+    # 
+    * 
+
+    # 
+    * 
+
+    # 
+    * 
+
+    # 
+    * 
+
+    # 
+    * 
+
+    # 
+    * 
+
+    # 
+    * 
+
+    # 
+    * 
+
+    # 
+    * 
+
+    # 
+    * 
+
+    # 
+    * 
+
+    # 
+    * 
+
+    # 
+    * 
+
+    # 
+    * 
+
+    # 
+    * 
+
+    # 
+    * 
+
+    # 
+    * 
+
+    # 
+    * 
+
+    # 
+    * 
+
+    # 
+    * 
+
+    # 
+    * 
+
+    # 
+    * 
+
+    
 11. 
 
 12. 

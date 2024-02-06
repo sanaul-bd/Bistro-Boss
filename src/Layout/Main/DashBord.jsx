@@ -47,6 +47,7 @@ const DashBord = () => {
                                 <li><NavLink to='/dashbord/manageItems'> <FaWallet></FaWallet> MANAGED ITEMS</NavLink></li>
                                 <li><NavLink to='/dashbord/managedBooking'><FaBook></FaBook> MANAGED BOOKINGS</NavLink></li>
                                 <li><NavLink to='/dashbord/allUsers'><FaUsers></FaUsers> ALL USERS </NavLink></li>
+                                <li><NavLink to='/dashbord/mycart'><FaShoppingCart></FaShoppingCart> My Cart </NavLink></li>
                                 {/* <li>
                                     <NavLink to='/dashbord/mycart'>
                                         <FaShoppingCart /> MY CART

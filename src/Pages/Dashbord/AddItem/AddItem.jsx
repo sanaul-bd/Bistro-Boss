@@ -41,7 +41,7 @@ const AddItem = () => {
                                     icon: "success",
                                     title: "Item has been added. ",
                                     showConfirmButton: false,
-                                    timer: 1500
+                                    timer: 1000
                                 });
                                 reset()
                             }
