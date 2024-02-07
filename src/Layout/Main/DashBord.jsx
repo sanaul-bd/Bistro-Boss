@@ -59,7 +59,7 @@ const DashBord = () => {
                             <div>
                                 <li><NavLink to='/dashbord/home'><FaHome /> HOME</NavLink></li>
                                 <li><NavLink to='/dashbord/revisition'><FaCalendarAlt></FaCalendarAlt> RESERVATION</NavLink></li>
-                                <li><NavLink to='/dashbord/payment'><FaWallet></FaWallet> PAYMENT HISTRY</NavLink></li>
+                                <li><NavLink to='/dashbord/paymenthistry'><FaWallet></FaWallet> PAYMENT HISTRY</NavLink></li>
                                 <li>
                                     <NavLink to='/dashbord/mycart'>
                                         <FaShoppingCart /> MY CART

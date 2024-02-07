@@ -66,11 +66,16 @@ step : 7
                 }
             }
 36. অতপর ডিলেট করে দেবো রিলেটেড সব কার্ট আইটেম ও res.send({paymentReslt, deletedResult}); দুইটা অবজেক্ট পাঠিয়ে দিবো ক্লাইন্টে। 
-37. 
-38.  
-39. 
-40. 
-41. 
+
+stepe: 8
+37. we secure payment elementCard. and apply conditon for server error with zero price figure. 
+38.  then we make a component for printing all payment list for user.
+39. we make a "/payments/:email" for getting payment list and make call from frontend. 
+39-1. after payment successfully we use useNavigation for navigate user to payment transaction page. 
+
+step : 9
+40. we make a payment transaction print component and show payment transaction.
+41. we use "tasntack" for usestate and use "axiosSecure" inside tasntuck query.
 42. 
 43. 
 44. 

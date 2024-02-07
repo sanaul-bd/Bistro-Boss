@@ -4,11 +4,13 @@ import useAxiosSecure from '../../../../Hooks/useAxiosSecure';
 import useAuth from '../../../../Hooks/useAuth';
 import useCart from '../../../../Hooks/useCart';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 
 const CheckOut = () => {
     const stripe = useStripe();
     const elements = useElements();
+    const navigate = useNavigate()
 
     // for store err and cardErr & print for Client. 
     const [error, setError] = useState('');
@@ -19,18 +21,20 @@ const CheckOut = () => {
     const { user } = useAuth();
     const [axiosSecure] = useAxiosSecure();
 
-    const [cart] = useCart();
+    const [cart, refetch] = useCart();
 
     const totalPrice = cart?.reduce((total, item) => total + item.price, 0)
 
     useEffect(() => {
-        axiosSecure.post('/create-payment-intent', { price: totalPrice })
-            .then(res => {
-                // after fetch this api we get clientSecret from server after varified client acc info.
-                console.log("clientSecret : ", res.data.clientSecret.client_secret);
-                // const clientSecret = res.data.clientSecret
-                setClientSecret(res.data.clientSecret.client_secret);
-            })
+        if (totalPrice > 0) {
+            axiosSecure.post('/create-payment-intent', { price: totalPrice })
+                .then(res => {
+                    // after fetch this api we get clientSecret from server after varified client acc info.
+                    console.log("clientSecret : ", res.data.clientSecret.client_secret);
+                    // const clientSecret = res.data.clientSecret
+                    setClientSecret(res.data.clientSecret.client_secret);
+                })
+        }
     }, [totalPrice])
 
     const handleSubmit = async (event) => {
@@ -89,6 +93,7 @@ const CheckOut = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                navigate('/dashbord/paymenthistry')
                 setTransaction_ID(paymentIntent.id)
                 console.log("Transaction_ID"), paymentIntent.id;
 
@@ -96,7 +101,7 @@ const CheckOut = () => {
                 const payment = {
                     email: user.email,
                     price: totalPrice,
-                    Transaction_ID: paymentIntent.id, 
+                    Transaction_ID: paymentIntent.id,
                     date: new Date(), //utc date convert for worldwide. use moment.js 
                     _cartIds: cart.map(item => item._id),
                     menuItemIds: cart.map(item => item.menuItemId),
@@ -106,6 +111,7 @@ const CheckOut = () => {
                 //* post by using axios secure 
                 const res = await axiosSecure.post('/payments', payment);
                 console.log("payyyyyyyyyment saved", res.data);
+                refetch()
             }
         }
     }

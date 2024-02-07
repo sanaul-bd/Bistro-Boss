@@ -671,27 +671,16 @@ step : 7
             }
 36. অতপর ডিলেট করে দেবো রিলেটেড সব কার্ট আইটেম ও res.send({paymentReslt, deletedResult}); দুইটা অবজেক্ট পাঠিয়ে দিবো ক্লাইন্টে। 
 
-# 
-1. 
-2. 
-3. 
-4. 
-5. 
-7. 
-8. 
-9. 
-10. 
+# 70-8 Payment Success Message And Get Payment Data : https://web.programming-hero.com/update-1/video/update-1-70-8-payment-success-message-and-get-payment-data
+stepe: 8
+37. we secure payment elementCard. and apply conditon for server error with zero price figure. 
+38.  then we make a component for printing all payment list for user.
+39. we make a "/payments/:email" for getting payment list and make call from frontend. 
 
-# 
-1. 
-2. 
-3. 
-4. 
-5. 
-7. 
-8. 
-9. 
-10. 
+# 70-9 Recap And Display Payment History : https://web.programming-hero.com/update-1/video/update-1-70-9-recap-and-display-payment-history
+step : 9
+40. we make a payment transaction print component and show payment transaction.
+41. we use "tasntack" for usestate and use "axiosSecure" inside tasntuck query.
 
 # 
 1. 
@@ -1256,8 +1245,8 @@ step : 7
     #  70-7 Save Payment Info And Delete Cart Items In The Database : 
     * https://web.programming-hero.com/update-1/video/update-1-70-7-save-payment-info-and-delete-cart-items-in-the-database
 
-    # 
-    * 
+    # 70-9 Recap And Display Payment History : 
+    * https://web.programming-hero.com/update-1/video/update-1-70-9-recap-and-display-payment-history
 
     # 
     * 

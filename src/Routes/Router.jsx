@@ -16,6 +16,7 @@ import AddItem from "../Pages/Dashbord/AddItem/Additem";
 import AdminRoute from "./AdminRoute";
 import ManageItems from "../Layout/Main/ManageItems/ManageItems";
 import Payment from "../Pages/Dashbord/AddItem/Payment/Payment";
+import PaymentHistry from "../Pages/Dashbord/PaymentHistry/PaymentHistry";
 
 export const router = createBrowserRouter([
     // main path || client Customar components Heare
@@ -75,6 +76,10 @@ export const router = createBrowserRouter([
                 path: 'manageItems',
                 element: <AdminRoute><ManageItems></ManageItems></AdminRoute>
             },
+            {
+                path: 'paymenthistry',
+                element: <PaymentHistry></PaymentHistry>
+            }
             
         ]
     }
