@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import useAxiosSecure from '../../../../Hooks/useAxiosSecure';
 import useAuth from '../../../../Hooks/useAuth';
 import useCart from '../../../../Hooks/useCart';
+import Swal from 'sweetalert2';
 
 
 const CheckOut = () => {
@@ -12,6 +13,7 @@ const CheckOut = () => {
     // for store err and cardErr & print for Client. 
     const [error, setError] = useState('');
     const [clientSecret, setClientSecret] = useState('');
+    const [Transaction_ID, setTransaction_ID] = useState('')
 
     // requre user for user info and axios for fetch || request. 
     const { user } = useAuth();
@@ -19,7 +21,7 @@ const CheckOut = () => {
 
     const [cart] = useCart();
 
-    const totalPrice = cart.reduce((total, item) => total + item.price, 0)
+    const totalPrice = cart?.reduce((total, item) => total + item.price, 0)
 
     useEffect(() => {
         axiosSecure.post('/create-payment-intent', { price: totalPrice })
@@ -62,21 +64,50 @@ const CheckOut = () => {
         }
         //  এই পর্যন্ত ঠিক আছে। এখানে আমরা সঠিক ভাবে রেস্পন্স পাচ্ছি, এখান থেকে পাওয়া রেজাল্ট বা এরোর কে আমরা স্টেট এ রেখে দেখাতে পারি। 
 
-        // const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
-        //     payment_method: {
-        //         card: card,
-        //         billing_details: {
-        //             name: user?.displayName || 'Anonymous_user',
-        //             email: user?.email || "Anonymous",
-        //         },
-        //     },
-        // })
-        // if (confirmError) {
-        //     console.log(confirmError);
-        //     setError()
-        // }
+        // * Confirm payment fuction
+        const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: card,
+                billing_details: {
+                    name: user?.displayName || 'Anonymous_user',
+                    email: user?.email || "Anonymous",
+                },
+            },
+        })
 
-        // console.log(paymentIntent);
+        if (confirmError) {
+            console.log("Confirm Error", confirmError);
+            setError()
+        }
+        else {
+            console.log("PaymentIntant", paymentIntent);
+            setError()
+            if (paymentIntent.status == "succeeded") {
+                Swal.fire({
+                    icon: "success",
+                    title: "Payment Success",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                setTransaction_ID(paymentIntent.id)
+                console.log("Transaction_ID"), paymentIntent.id;
+
+                // we make a payment object for send to server . we need email, price, id, menu_id, date.
+                const payment = {
+                    email: user.email,
+                    price: totalPrice,
+                    Transaction_ID: paymentIntent.id, 
+                    date: new Date(), //utc date convert for worldwide. use moment.js 
+                    _cartIds: cart.map(item => item._id),
+                    menuItemIds: cart.map(item => item.menuItemId),
+                    status: "pending"
+                }
+
+                //* post by using axios secure 
+                const res = await axiosSecure.post('/payments', payment);
+                console.log("payyyyyyyyyment saved", res.data);
+            }
+        }
     }
 
 
@@ -109,6 +140,9 @@ const CheckOut = () => {
             </form>
             {
                 error && <p className='text-red-600  lg:px-20 font-semibold'>{error}</p>
+            }
+            {
+                Transaction_ID && <p className='text-success lg:px-20 font-semibold'>Your Transaction is Success.</p>
             }
         </div>
     );

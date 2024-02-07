@@ -623,26 +623,53 @@ Step: 5 -
 17. আমরা এখান থেকে প্রাইস দিয়ে একটা রিকোয়েষ্ট করলাম, ব্যাকেন্ড থেকে এইটা রিসিভ করে stripe এটাকে অথেণ্টিকেশন করে একটা কোড জেনারেট করে দিলো যা নিশ্চিত করে ইউজার টা ভ্যারিফাইড। আর পেমেন্ট করার জন্য প্রাথমিক কাজ টা সম্পন্ন হলো। payment-intent means পেমেন্ট করার জন্য উদ্যত হওয়া । 
 
 # 70-6 Use Confirm Card Payment To Process Payment : https://web.programming-hero.com/update-1/video/update-1-70-6-use-confirm-card-payment-to-process-payment
-1. 
-2. 
-3. 
-4. 
-5. 
-7. 
-8. 
-9. 
-10. 
+step- 6
+18. After Complate CreatPaymenMethod we get a 2 res ( paymetnMethod, error). log and set clientsecret to state.
+19. then we creat ConfirmPaymentMethod then we get (paymentIntent, error) 
+20. after creat confirmOayment successfully  we print swal("succes") - paymet.jsx
 
-# 
-1. 
-2. 
-3. 
-4. 
-5. 
-7. 
-8. 
-9. 
-10. 
+
+
+# 70-7 Save Payment Info And Delete Cart Items In The Database : https://web.programming-hero.com/update-1/video/update-1-70-7-save-payment-info-and-delete-cart-items-in-the-database
+step - 6
+18. After Complate CreatPaymenMethod we get a 2 res ( paymetnMethod, error). log and set clientsecret to state.
+19. then we creat ConfirmPaymentMethod then we get (paymentIntent, error) 
+20. after creat confirmOayment successfully  we print swal("succes") - paymet.jsx
+
+step : 7
+31. আমরা একটা payment অবজেক্ট বানালাম তাতে পেমেন্ট জনিত সব ইনফো রেখে দিলাম।
+32. axiosSecure করে আমরা এসব পেমেন্ট অব্জেক্ট ব্যাকেন্ডে পাঠিয়ে দিবো। আর রেস্পন্স হিসেবে প্রিন্ট করতে যেয়ে কার্ট / কার্ট আইটেম কয়টা তা মুছে দিবো। checkout.jsx
+33. অন্যদিকে::: axiosSecure সেন্ড করা ডাটা রিসিভের জন্য app.post() API লিখবো। সেখানে বডি থেকে পেমেন্ট ইনফো পাওয়া যাবে। 
+34. প্রথমে আমরা পেমেন্ট  কালেকশন ইনফো ডাটাবেসে পাঠিয়ে দিবো। 
+35. তারপর যেগুলো পেমেন্ট করে পাঠালাম সেগুলো কার্ট থেকে ক্লেয়ার করার জন্য একটা কোয়ারি লিখবো , 
+    const query = {
+                // ~ এখানে পেমেন্ট অব্জেক্ট থেকে _cartIds.map() করে cardIds এক্সেস করার আইডি গুলো নিলাম। তারপর সেগুলো object করে রাখার জন্য একটা object{} বানালাম যেখানে নতুন একটা mdbr _id হলো। এবং এই টা দিয়ে এই অব্জেক্ট এ যে আইডি আছে সে সমস্ত cart আইডি যুক্ত আইটেম গুলো ডিলেট করে দিলাম। 
+                // পেমেন্ট এর জন্য আলাদা কালেকশন হলো, তাতে অব্জেক্ট হিসেবে পেমেন্ট এর ইনফো ডাটাবেজে সেন্ড করে দিলাম। 
+                // আবার এখানে কোয়ারি করে কার্ট থেকে সমস্ত আইটেম মুছে দিলাম কারণ পেমেন্ট হয়ে গেছে । 
+                _id: {
+                    $in: payment._cartIds.map(id => new ObjectId(id))
+                }
+            }
+36. অতপর ডিলেট করে দেবো রিলেটেড সব কার্ট আইটেম ও res.send({paymentReslt, deletedResult}); দুইটা অবজেক্ট পাঠিয়ে দিবো ক্লাইন্টে। step - 6
+18. After Complate CreatPaymenMethod we get a 2 res ( paymetnMethod, error). log and set clientsecret to state.
+19. then we creat ConfirmPaymentMethod then we get (paymentIntent, error) 
+20. after creat confirmOayment successfully  we print swal("succes") - paymet.jsx
+
+step : 7
+31. আমরা একটা payment অবজেক্ট বানালাম তাতে পেমেন্ট জনিত সব ইনফো রেখে দিলাম।
+32. axiosSecure করে আমরা এসব পেমেন্ট অব্জেক্ট ব্যাকেন্ডে পাঠিয়ে দিবো। আর রেস্পন্স হিসেবে প্রিন্ট করতে যেয়ে কার্ট / কার্ট আইটেম কয়টা তা মুছে দিবো। checkout.jsx
+33. অন্যদিকে::: axiosSecure সেন্ড করা ডাটা রিসিভের জন্য app.post() API লিখবো। সেখানে বডি থেকে পেমেন্ট ইনফো পাওয়া যাবে। 
+34. প্রথমে আমরা পেমেন্ট  কালেকশন ইনফো ডাটাবেসে পাঠিয়ে দিবো। 
+35. তারপর যেগুলো পেমেন্ট করে পাঠালাম সেগুলো কার্ট থেকে ক্লেয়ার করার জন্য একটা কোয়ারি লিখবো , 
+    const query = {
+                // ~ এখানে পেমেন্ট অব্জেক্ট থেকে _cartIds.map() করে cardIds এক্সেস করার আইডি গুলো নিলাম। তারপর সেগুলো object করে রাখার জন্য একটা object{} বানালাম যেখানে নতুন একটা mdbr _id হলো। এবং এই টা দিয়ে এই অব্জেক্ট এ যে আইডি আছে সে সমস্ত cart আইডি যুক্ত আইটেম গুলো ডিলেট করে দিলাম। 
+                // পেমেন্ট এর জন্য আলাদা কালেকশন হলো, তাতে অব্জেক্ট হিসেবে পেমেন্ট এর ইনফো ডাটাবেজে সেন্ড করে দিলাম। 
+                // আবার এখানে কোয়ারি করে কার্ট থেকে সমস্ত আইটেম মুছে দিলাম কারণ পেমেন্ট হয়ে গেছে । 
+                _id: {
+                    $in: payment._cartIds.map(id => new ObjectId(id))
+                }
+            }
+36. অতপর ডিলেট করে দেবো রিলেটেড সব কার্ট আইটেম ও res.send({paymentReslt, deletedResult}); দুইটা অবজেক্ট পাঠিয়ে দিবো ক্লাইন্টে। 
 
 # 
 1. 
@@ -1220,14 +1247,14 @@ Step: 5 -
 13. # 70-4 Display Card Error And Create Server Side Payment Intents
     * https://web.programming-hero.com/update-1/video/update-1-70-4-display-card-error-and-create-server-side-payment-intents
 
-   14. # 
-    * 
+   14. # 70-5 Send Price And Get Client Secret From Stripe : 
+    * https://web.programming-hero.com/update-1/video/update-1-70-5-send-price-and-get-client-secret-from-stripe 
 
-    # 
-    * 
+    # 70-6 Use Confirm Card Payment To Process Payment : 
+    * https://web.programming-hero.com/update-1/video/update-1-70-6-use-confirm-card-payment-to-process-payment
 
-    # 
-    * 
+    #  70-7 Save Payment Info And Delete Cart Items In The Database : 
+    * https://web.programming-hero.com/update-1/video/update-1-70-7-save-payment-info-and-delete-cart-items-in-the-database
 
     # 
     * 
