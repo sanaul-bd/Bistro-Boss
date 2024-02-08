@@ -64,19 +64,18 @@ const AuthProvider = ({ children }) => {
             //! get and set || remove token 
             if (currentUser) {
                 axios.post("http://localhost:5000/jwt", { email: currentUser.email })
-                .then(data => {
-                    // console.log("TOKEN______", data.data.token);
+                    .then(data => {
+                        // console.log("TOKEN______", data.data.token);
 
-                    // set token kye to local storege 
-                    localStorage.setItem('access-token', data.data.token)
-                    setLoading(false);
-                })
+                        // set token kye to local storege 
+                        localStorage.setItem('access-token', data.data.token)
+                        setLoading(false);
+                    })
             }
-            else{
+            else {
                 localStorage.removeItem('access-token')
+                setLoading(false);
             }
-
-            
         });
         return () => {
             return unSubscribe()

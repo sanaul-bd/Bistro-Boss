@@ -682,40 +682,23 @@ step : 9
 40. we make a payment transaction print component and show payment transaction.
 41. we use "tasntack" for usestate and use "axiosSecure" inside tasntuck query.
 
-# 
-1. 
-2. 
-3. 
+# 71-1 Different Dashboard Home Page For User And Admin : https://web.programming-hero.com/update-1/video/update-1-71-1-different-dashboard-home-page-for-user-and-admin
+1. make "UserHome" & "AdminHome" component. 
+2. make router.
+3. create navlink. 
 4. 
-5. 
-7. 
-8. 
-9. 
-10. 
 
-# 
-1. 
+# 71-3 Create Admin Dashboard Stats Api : https://web.programming-hero.com/update-1/video/update-1-71-3-create-admin-dashboard-stats-api
+1. try to fix problem solving, this is amazing. 
 2. 
-3. 
-4. 
-5. 
-7. 
-8. 
-9. 
-10. 
 
-# 
-1. 
-2. 
+# 71-4 Load Data And Display Stats On The Admin Home : https://web.programming-hero.com/update-1/video/update-1-71-4-load-data-and-display-stats-on-the-admin-home
+1. make arragent for getting specific data info. 
+2. arragent pipline is the way there is loading spc field data which we need. no need to load all data and presurried web fow. which feild data wen need this way we can get all needed spc data. 
 3. 
-4. 
-5. 
-7. 
-8. 
-9. 
-10. 
 
-# 
+
+# 71-5 (Optional) High Level Overview Of Aggregate Pipeline : https://web.programming-hero.com/update-1/video/update-1-71-5-optional-high-level-overview-of-aggregate-pipeline
 1. 
 2. 
 3. 

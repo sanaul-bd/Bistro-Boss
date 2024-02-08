@@ -107,35 +107,4 @@ step : 9
 
 
 
-
-/* 
-PAYMENT INTGREATION STEPS:
-
-1. install sripe and react stripe js. - npm install --save @stripe/react-stripe-js @stripe/stripe-js
-2. creat a checkout from with card element (card element contains: card element, expiration date, cvs, zip code )
-3. creat account on stripe and get the pk || publishable key
-4. create a function and apply some condition for secure this operation .   
-5. use test card for updating perfomance and print error if finding any kind of error. 
-6. 
-7. 
-8. 
-9. 
-10. 
-*/ 
-/* 
-PAYMENT INTGREATION STEPS:
-
-1. *
-2. *
-3. *
-4. *
-5. *
-6. install stripe backend : - npm install --save stripe
-7. creat paymentIntent api with paymentMethod types
-8. 
-9. 
-10. 
-*/ 
-
-// Secret_Key=sk_test_51OeYPIEp3bUWfzDZyDKyKCCLodM1FdVOZSBzShxGnYJe2KL5TwbIElRcXS9ThjTprmKPDRIZqVG1T2f2HH3sFeTJ00R8QgoF6F
-// publishable_key=pk_test_51OeYPIEp3bUWfzDZ7QWnvjD3wmhwqwnGEhqmb3Wrjg8vUdkE2HHe4JUHuWTgNjCycXne5jM8Bmr3zxTv8U273Svw00mT3jZKeL
+// todo: Bug fix 71-2 Fix Login Issue And API Race Condition : https://web.programming-hero.com/update-1/video/update-1-71-2-fix-login-issue-and-api-race-condition

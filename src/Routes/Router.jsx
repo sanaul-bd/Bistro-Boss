@@ -17,6 +17,8 @@ import AdminRoute from "./AdminRoute";
 import ManageItems from "../Layout/Main/ManageItems/ManageItems";
 import Payment from "../Pages/Dashbord/AddItem/Payment/Payment";
 import PaymentHistry from "../Pages/Dashbord/PaymentHistry/PaymentHistry";
+import UserHome from "../Pages/Dashbord/UserHome/UserHome";
+import AdminHome from "../Pages/Dashbord/AdminHome/AdminHome";
 
 export const router = createBrowserRouter([
     // main path || client Customar components Heare
@@ -79,7 +81,15 @@ export const router = createBrowserRouter([
             {
                 path: 'paymenthistry',
                 element: <PaymentHistry></PaymentHistry>
-            }
+            },
+            {
+                path: 'userhome',
+                element: <UserHome></UserHome>
+            },
+            {
+                path: 'adminHome',
+                element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
+            },
             
         ]
     }

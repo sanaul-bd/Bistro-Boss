@@ -1,15 +1,17 @@
 import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import {AuthContext } from "../../../Provider/AuthProvider";
 import { FaShoppingCart } from "react-icons/fa";
 import useCart from "../../../Hooks/useCart";
 import Swal from "sweetalert2";
+import useAdmin from "../../../Hooks/useAdmin";
 
 
 const NavBar = () => {
     const navigate = useNavigate()
     // get user from useContex
-    const { user, logOut } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext);
+    const [isAdmin] = useAdmin();
 
     // get cart from cartHooks by using tanstuck || reactQuery
     const [cart] = useCart()
@@ -33,7 +35,11 @@ const NavBar = () => {
             <li><Link to='/'>Home</Link></li>
             <li><Link to='/menu'>Our Menu</Link></li>
             <li><Link to='/order/Salad'>Order Food</Link></li>
-            <li><Link to='/secret'>Secret</Link></li>
+            {
+                // user ? "true" : "false" // normally ternary operator 
+                // user ? condition ? "Double true " : "single True" : "false" nested ternary operator 
+                user && !isAdmin ? <li><NavLink to='/dashbord/userHome'>User HOME</NavLink></li> : <li><NavLink to='/dashbord/adminHome'> ADMIN HOME</NavLink></li>
+            }
             {
                 user ?
                     <>

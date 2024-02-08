@@ -57,8 +57,8 @@ const DashBord = () => {
                             </div>
                             :
                             <div>
-                                <li><NavLink to='/dashbord/home'><FaHome /> HOME</NavLink></li>
-                                <li><NavLink to='/dashbord/revisition'><FaCalendarAlt></FaCalendarAlt> RESERVATION</NavLink></li>
+                                <li><NavLink to='/dashbord/userhome'><FaHome />User HOME</NavLink></li>
+                                <li><NavLink to='/dashbord/reviitsion'><FaCalendarAlt></FaCalendarAlt> RESERVATION</NavLink></li>
                                 <li><NavLink to='/dashbord/paymenthistry'><FaWallet></FaWallet> PAYMENT HISTRY</NavLink></li>
                                 <li>
                                     <NavLink to='/dashbord/mycart'>
