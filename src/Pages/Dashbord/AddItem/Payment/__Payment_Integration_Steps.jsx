@@ -1,5 +1,5 @@
 
-
+// [4242424242424242, 4000056655665556, 5555555555554444, 2223003122003222, 5200828282828210]
 /*
 step: 1 - viedo 70.1 - payment.jsx
 1. goto react-stripe.js and isnatall stripe on client_side. 
@@ -93,6 +93,96 @@ step : 9
 
 */ 
 
+// Class Name: 71-5 (Optional) High Level Overview Of Aggregate Pipeline
+// class link: https://web.programming-hero.com/update-1/video/update-1-71-5-optional-high-level-overview-of-aggregate-pipeline
+
+// class Name: 71-6 (Optional) Get Order Quantity And Revenue By Category
+// class link: https://web.programming-hero.com/update-1/video/update-1-71-6-optional-get-order-quantity-and-revenue-by-category
+
+/* 
+    const payment = {
+        _id: id, 
+        email: email,
+        price: price, 
+        transaction_id: trID,
+        date: new Date(),
+        _cardIds: [id, id, id],
+        menuItemsId: [id, id, id],
+        status: "pending"
+    }
+
+    const result = await paymentColeection.aggregate([
+        {
+            $unwind: "$menuItemsId", // সব গুলো কে ... আলাদা করে ফেলা । 
+        },
+        {
+            $lookup: { // লোকআপ মানে একটা কালেকনশনের সাথে অন্য কালেকশনের রিলেশন তৈরি করা । 
+                from: "menu", // উপরের paymentCollection সাথে যার রিলেসশন হবে সে "menu" collection.
+                localField: "menuItemsId", // menuItemsId এর আইডি গুলোকে 
+                foreignField: "_id", // from এর menu কালেকশনের আইডির সাথে 
+                as: "menuItems" // কাজ শেষে এই নামের একটা কালেকশন দিতে হবে 
+            }
+            # lookup মানে একটার সাথে অন্যটার কানেকশন করা । 
+            # group মানে আলদা আলদা গ্রুপ তৈরী করা। 
+            1. এখানে প্রথমে paymentCollection এ যাবে। 
+            2. তারপর menuItemsId এর সব গুলাকে আলাদা করে ফেলবে। 
+            3. lookup করবে মানে সম্পর্কের লজিক কে কার সাথে যুক্ত হচ্ছে। 
+            4. paymentCollection এর সাথে from: "$menu" কালেকশনের কানেকশন করতে হবে । 
+            5. localField মানে হলো আমরা যেগুলো কে $unwind: করলাম মানে খুলে দিলাম।
+            6. foreignField: মানে হলো যে কালেকশনের সাথে মিল করতে চাচ্ছি। 
+                ex: from: যার সাথে মিলাবো। 
+                    local: যেখান থেকে নিয়ে মিলাবো। 
+                    foreginField: যে এলিমেন্ট এর সাথে মিলাবো (_id, name, email etc) to from এর সাথে। 
+                    as: যে নাম দিয়ে একসাথে রেসপন্স পাববো । 
+        },
+        {
+            $unwind: "$menuItems" 
+        },
+        {
+            $group: { // গ্রুপ করবো আলাদা আলাদা ক্যাটাগরি ও আলাদা আলাদ আইডি হিসেবে 
+                _id: "$menuItems.category", // আইডি গুলো আলাদা করবো ক্যাটাগরি দিয়ে তুলনা করে 
+                quantity: { $sum: 1}, একেক টা আইডির জন্য একটা করে যোগ করে কোয়ান্টিটি বের করবো 
+                totalRevenue: { $sum: "menuItems.price"} এখান থেকে প্রাইস গুলো নিয়ে totalRe তে রাখবো। 
+            }
+        }
+    ]).toArray();
+
+todo. class link: https://web.programming-hero.com/update-1/video/update-1-71-6-optional-get-order-quantity-and-revenue-by-category
+related viedo : https://www.youtube.com/watch?v=fNQY8KKRx2I
+
+1. $unwind করলে একটা _id: তে অনেক গুলো menuId থাকে, সেগুলো কে ওই একটা _id: রেখেই আলাদা করে একটা একটা menuId করে দেয়। মানে একসাথে এরে তে না রেখে আলদা আলদা করে খোলা ছেড়ে দেয়। 
+
+         * Using Aggregate pipeline
+        app.get('/order-stats', async (req, res) => {
+            const result = await paymentCollection.aggregate([
+                {
+                    $unwind: "$menuItemIds" // এক আইডি দিয়ে menuId গুলোকে আলাদা আলাদা করে দিবে।  
+                },
+                {
+                    $lookup: {
+                        from: "menu", // menu'র সাথে মিলাবো , খুজে দেখবো 
+                        localField: "menuItemIds", // এইখানের আইডি গুলাকে মিলাবো 
+                        foreginfield: "_id", // "menu" collecion এর _id র সাথে মিলাবো 
+                        as: "menuItems", // যে নামে রিটার্ন চাচ্ছি 
+                        paymentCollection er "menuItemIds" gulake unwind korbo. "menu: menuCollection er foreginField: menu._id" sathe tulona kore as: menuitems নামে রিটার্ন নিবো । 
+                    }
+                }
+            ]).toArray();
+
+
+            res.send(result);
+        })
+2. 
+3. 
+4. 
+5. 
+6. 
+7. 
+8. 
+9. 
+
+
+*/ 
 
 
 

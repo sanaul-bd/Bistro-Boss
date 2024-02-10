@@ -31,10 +31,10 @@ const AdminHome = () => {
                 }
             </div>
             {/* table format  */}
-            <div className="stats shadow w-full">
+            <div className="stats shadow w-full gap-4">
 
                 {/* 1 */}
-                <div className="stat">
+                <div className="stat bg-slate-200  rounded-2xl">
                     <div className="stat-figure text-secondary">
                         <IoWalletOutline className="text-3xl" />
                     </div>
@@ -44,17 +44,17 @@ const AdminHome = () => {
                 </div>
 
                 {/* 2 */}
-                <div className="stat">
+                <div className="stat bg-orange-200 rounded-2xl">
                     <div className="stat-figure text-secondary">
                         <IoIosPeople className="text-3xl" />
                     </div>
-                    <div className="stat-title font-semibold"> Users</div>
+                    <div className="stat-title font-semibold">Users Count</div>
                     <div className="stat-value">{stats?.users}</div>
                     <div className="stat-desc">↗︎ 400 (22%)</div>
                 </div>
 
                 {/* 3 */}
-                <div className="stat">
+                <div className="stat bg-lime-200  rounded-2xl">
                     <div className="stat-figure text-secondary">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-8 h-8 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
                     </div>
@@ -64,7 +64,7 @@ const AdminHome = () => {
                 </div>
 
                 {/* 4 */}
-                <div className="stat">
+                <div className="stat bg-cyan-200  rounded-2xl">
                     <div className="stat-figure text-secondary">
                     <MdOutlineLocalShipping className="text-3xl"/>
                     </div>
