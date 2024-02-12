@@ -1,4 +1,8 @@
 
+// * ************************
+//      STRIPE
+// ^ ************************
+// payment gatway link : https://dashboard.stripe.com/test/payments?status[0]=successful
 // [4242424242424242, 4000056655665556, 5555555555554444, 2223003122003222, 5200828282828210]
 /*
 step: 1 - viedo 70.1 - payment.jsx
@@ -93,11 +97,20 @@ step : 9
 
 */ 
 
+// * ******************************************
+//          Backend : aggregate
+// ^ ******************************************
 // Class Name: 71-5 (Optional) High Level Overview Of Aggregate Pipeline
-// class link: https://web.programming-hero.com/update-1/video/update-1-71-5-optional-high-level-overview-of-aggregate-pipeline
+// todo. class link: https://web.programming-hero.com/update-1/video/update-1-71-5-optional-high-level-overview-of-aggregate-pipeline
 
-// class Name: 71-6 (Optional) Get Order Quantity And Revenue By Category
-// class link: https://web.programming-hero.com/update-1/video/update-1-71-6-optional-get-order-quantity-and-revenue-by-category
+// todo. class link: https://web.programming-hero.com/update-1/video/update-1-71-6-optional-get-order-quantity-and-revenue-by-category
+
+// todo. https://web.programming-hero.com/update-1/video/update-1-71-7-optional-display-custom-bar-chart-and-custom-pie-chart
+
+// related viedo : https://www.youtube.com/watch?v=fNQY8KKRx2I
+// related viedo : https://www.youtube.com/watch?v=1s5RLZM8oCU
+
+
 
 /* 
     const payment = {
@@ -113,7 +126,7 @@ step : 9
 
     const result = await paymentColeection.aggregate([
         {
-            $unwind: "$menuItemsId", // সব গুলো কে ... আলাদা করে ফেলা । 
+            $unwind: "$menuItemsId", // আলাদা করে উপরে নিয়ে আসা , ইন্ডেক্স থেকে বের করে তার উপরে সরাসরি ছড়িয়ে দেওয়া । 
         },
         {
             $lookup: { // লোকআপ মানে একটা কালেকনশনের সাথে অন্য কালেকশনের রিলেশন তৈরি করা । 
@@ -147,8 +160,26 @@ step : 9
         }
     ]).toArray();
 
+    * Best viedo : https://www.youtube.com/watch?v=tQ-AWUR49AQ
+! এইটা দেখে ফেলতে হবে ব্যাকেন্ডের জন্য। এখানে যা হইছিলো তা হলো আমি ম্যাচ করার জন্য যার সাথে তুলনা করবো তার আইডির সামনে objectId আছে আর যার সাথে করবো তার সামনে এইটা নেই। ব্যাকেন্ডে সেনিজ্য ঝামেলা করলা ২ দিন। 
 todo. class link: https://web.programming-hero.com/update-1/video/update-1-71-6-optional-get-order-quantity-and-revenue-by-category
-related viedo : https://www.youtube.com/watch?v=fNQY8KKRx2I
+todo. https://web.programming-hero.com/update-1/video/update-1-71-7-optional-display-custom-bar-chart-and-custom-pie-chart
+
+
+
+----------------------------
+[
+    {
+    $lookup: {
+            from: "menu", // যেখানে আমি তাকাই বা যে কালেকশনের সাথে মিল করতে চাই 
+            localField: field,
+            foreignField: field, // দুই কানেকশনের মধ্যে যেই ডাটা টা ম্যাচ করবে সেটাই ফরেন ফিল্ড 
+            as: result
+        }
+    }
+]
+
+----------------------------
 
 1. $unwind করলে একটা _id: তে অনেক গুলো menuId থাকে, সেগুলো কে ওই একটা _id: রেখেই আলাদা করে একটা একটা menuId করে দেয়। মানে একসাথে এরে তে না রেখে আলদা আলদা করে খোলা ছেড়ে দেয়। 
 
@@ -157,6 +188,14 @@ related viedo : https://www.youtube.com/watch?v=fNQY8KKRx2I
             const result = await paymentCollection.aggregate([
                 {
                     $unwind: "$menuItemIds" // এক আইডি দিয়ে menuId গুলোকে আলাদা আলাদা করে দিবে।  
+                },
+                * rename some field: 
+                {
+                    $addFields: {
+                        "menuItemIds": {
+                            $toObjectId: "$menuItemIds" // Convert string ID to ObjectId
+                        }
+                    }
                 },
                 {
                     $lookup: {
@@ -184,6 +223,21 @@ related viedo : https://www.youtube.com/watch?v=fNQY8KKRx2I
 
 */ 
 
+
+/* 
+71-7 (Optional) Display Custom Bar Chart And Custom Pie Chart : https://web.programming-hero.com/update-1/video/update-1-71-7-optional-display-custom-bar-chart-and-custom-pie-chart
+
+1. we set a Rechart. link : https://recharts.org/en-US/examples/CustomShapeBarChart;
+2. we set a Pichart. link : https://recharts.org/en-US/examples/PieChartWithCustomizedLabel;
+3. 
+4. 
+5. 
+6. 
+7. 
+8. 
+9. 
+10. 
+*/ 
 
 
 

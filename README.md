@@ -731,8 +731,8 @@ step : 9
 9. 
 10. 
 
-# 
-1. 
+# 71-7 (Optional) Display Custom Bar Chart And Custom Pie Chart https://web.programming-hero.com/update-1/video/update-1-71-7-optional-display-custom-bar-chart-and-custom-pie-chart
+1. install rechart.js = "npm install recharts";
 2. 
 3. 
 4. 

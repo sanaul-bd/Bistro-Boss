@@ -74,7 +74,7 @@ const DashBord = () => {
                     <div className="divider my-2"></div>
                     <li><NavLink to='/'><FaHome></FaHome> HOME</NavLink></li>
                     <li><NavLink to='/dashbord/menu'><CiMenuFries /> MENU</NavLink></li>
-                    <li><NavLink to='/dashbord/shop'><FaShoppingBag /> SHOP</NavLink></li>
+                    <li><NavLink to='/order/pizza'><FaShoppingBag /> SHOP</NavLink></li>
                     <li><NavLink to='/dashbord/contatc'><MdOutlineMailOutline /> CONTACT</NavLink></li>
                 </ul>
 
