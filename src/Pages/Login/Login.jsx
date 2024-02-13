@@ -17,13 +17,14 @@ const Login = () => {
     // captcah ref used for useref
     // const captchaRef = useRef(null)
     // login effect 
-    const [loginDisable, setLoginDisable] = useState(true)
+    const [loginDisable, setLoginDisable] = useState(true);
+    const [captchaError, setCaptchaError] = useState('');
 
     const { logIn } = useContext(AuthContext);
 
     // useEffect for Captcha 
     useEffect(() => {
-        loadCaptchaEnginge(6);
+        loadCaptchaEnginge(5);
     }, [])
 
     // collect form data by using form control
@@ -69,12 +70,15 @@ const Login = () => {
         // console.log(captchValue );
         if (validateCaptcha(user_captcha_value)) {
             setLoginDisable(false)
+            setCaptchaError('')
         } else {
             if (user_captcha_value === '') {
-                alert('Enter Captcha ');
+                // alert('Enter Captcha ');
+                setCaptchaError('Enter Captcha')
             } else {
-                alert('Captcha Does Not Match');
+                // alert('Captcha Does Not Match');
                 // document.getElementById("captchaID").value = ''
+                setCaptchaError("Captcha Doesn't matchPath, try again.")
             }
 
         }
@@ -111,19 +115,27 @@ const Login = () => {
                                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                 </label>
                             </div>
+
                             {/*  Captcha  */}
                             <div className="form-control">
                                 <label className="label">
                                     <LoadCanvasTemplate />
                                 </label>
                                 <input onBlur={handleValidateCaptcha} id='captchaID' type="text" name="captcha" placeholder="Type the Captcha Above" className="input input-bordered" />
-                                {/* <button className='btn btn-outline btn-xs mt-3'>Validate </button> */}
+                                {/* <button onclick={habdleValidateCaptcha} className='btn btn-outline btn-xs mt-3'>Validate </button> */}
                             </div>
+                            {
+                                captchaError && <span className='bg-red-500 p-1 text-white rounded-lg'>
+                                    {
+                                        captchaError
+                                    }
+                                </span>
+                            }
                             {/* <button className="btn btn-primary">Login</button> */}
                             {/* TODO: make button disable true after production is done  */}
-                            <input disabled={false} className="btn btn-primary" type="submit" id="" value="Log In" />
+                            <input disabled={loginDisable} className="btn btn-primary" type="submit" id="" value="Log In" />
                         </form>
-                            <p className='text-center'><small>New Heare? <Link to='/signup'>Create an New Account. </Link></small></p>
+                        <p className='text-center'><small>New Heare? <Link to='/signup'>Create an New Account. </Link></small></p>
                         <SocialLogin></SocialLogin>
                     </div>
                 </div>

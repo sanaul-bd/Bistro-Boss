@@ -24,7 +24,7 @@ const useCart = () => {
         queryKey: ['carts', user?.email],
         enabled: !loading,
         // queryFn: async () => {
-        //     const res = await fetch(`http://localhost:5000/carts?email=${user.email}`, {
+        //     const res = await fetch(`https://server-bistro-boss-ten.vercel.app/carts?email=${user.email}`, {
         //         headers: {
         //             authorization: `bearer ${token}`
         //         }
@@ -48,5 +48,5 @@ const useCart = () => {
 export default useCart;
 
 // tenstack quary  : Query একদম হুবুহু হইতে হবে ।
-// http://localhost:5000/carts?email=sanaullah.bd21@gmail.com  || not Work
-// http://localhost:5000/carts?email=sanaullah.bd21@gmail.com  || work
+// https://server-bistro-boss-ten.vercel.app/carts?email=sanaullah.bd21@gmail.com  || not Work
+// https://server-bistro-boss-ten.vercel.app/carts?email=sanaullah.bd21@gmail.com  || work

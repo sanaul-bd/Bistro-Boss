@@ -66,7 +66,7 @@ const SignUp = () => {
 
                         // after sign up || update user successfully we store user info  thats why we creat a fetch request heare 
                         const savedUser = { name: data.name, email: data.email, photoURL: data.photoURL, password: data.password }
-                        fetch(`http://localhost:5000/users`, {
+                        fetch(`https://server-bistro-boss-ten.vercel.app/users`, {
                             method: "POST",
                             headers: {
                                 "content-type": "application/json"

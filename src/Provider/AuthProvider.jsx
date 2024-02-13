@@ -63,7 +63,7 @@ const AuthProvider = ({ children }) => {
 
             //! get and set || remove token 
             if (currentUser) {
-                axios.post("http://localhost:5000/jwt", { email: currentUser.email })
+                axios.post("https://server-bistro-boss-ten.vercel.app/jwt", { email: currentUser.email })
                     .then(data => {
                         // console.log("TOKEN______", data.data.token);
 
